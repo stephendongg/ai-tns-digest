@@ -1,18 +1,19 @@
-# CivicPulse NYC
+# AI Research Digest
 
-**Prototype** — AI-powered civic news classifier and digest generator. Probably one user... me!
+Minimal daily AI briefing built for one job: help me stay current without scrolling all day.
 
-[View live →](https://stephendongg.github.io/civicpulse/nyc/)
+[View live ->](https://stephendongg.github.io/ai-research-digest/)
 
 ## How it works
 
-Fetches NYC news → Classifies with GPT-4 → Filters by importance → Generates daily digest
+Pulls recent AI coverage from Google News search feeds -> deduplicates candidates -> uses GPT-5.4 to turn them into one short daily brief and a small set of worthwhile links.
 
-Uses a custom taxonomy adapted from the FCC's Critical Information Needs framework for civic categorization.
+## Output
 
-Automated via GitHub Actions.
-
+- One lead summary
+- A handful of links worth opening
+- A single-page GitHub Pages site
 
 ## Tech
 
-Python • OpenAI API • GitHub Pages
+Python - OpenAI API - Google News RSS - GitHub Actions - GitHub Pages

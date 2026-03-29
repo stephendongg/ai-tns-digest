@@ -2,40 +2,358 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>CivicPulse</title>
-    <!-- Root redirect page - sends visitors to /nyc/ -->
+    <title>AI Research Digest</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta http-equiv="refresh" content="0; url=./nyc/" />
+    <meta
+      name="description"
+      content="A minimalist daily AI news digest with one short brief and a handful of worthwhile links."
+    />
+
     <style>
+      :root {
+        --background: #ffffff;
+        --foreground: #111111;
+        --accent: #c37b33;
+        --border: #000000;
+        --muted: #555555;
+        --accent2: #1f3a5f;
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+
       body {
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        height: 100vh;
         margin: 0;
-        background: #ffffff;
-        color: #111111;
+        background: var(--background);
+        color: var(--foreground);
+        font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        font-size: 16px;
+        line-height: 1.6;
       }
-      
-      .container {
+
+      .wrap {
+        max-width: 960px;
+        margin: 0 auto;
+        padding: 32px 20px 56px;
+      }
+
+      header {
+        margin-bottom: 32px;
+      }
+
+      .masthead-top {
+        display: flex;
+        justify-content: space-between;
+        gap: 16px;
+        font-size: 13px;
+        color: #444444;
+        margin-bottom: 10px;
+      }
+
+      h1 {
+        margin: 0 0 12px;
+        font-size: 44px;
+        font-weight: 600;
         text-align: center;
+        letter-spacing: 0.01em;
       }
-      
-      a {
-        color: #1F3A5F;
+
+      .word-ai {
+        color: #000000;
+      }
+
+      .word-digest {
+        color: var(--accent);
+      }
+
+      .place-label {
+        padding: 2px 10px;
+        border: 1px solid var(--border);
+        font-size: 14px;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
+
+      nav.nav-row {
+        display: flex;
+        justify-content: center;
+        gap: 28px;
+        margin: 0;
+        font-size: 13px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .nav-row a {
+        color: var(--border);
         text-decoration: none;
       }
-      
-      a:hover {
+
+      .nav-row a:focus-visible,
+      .featured-list a:focus-visible {
+        outline: 2px solid var(--accent);
+        outline-offset: 3px;
+      }
+
+      .nav-row a:first-child {
+        font-weight: 600;
+      }
+
+      .daily-fact {
+        margin: 26px 0 18px;
+        font-size: 18px;
+        line-height: 1.5;
+      }
+
+      .daily-fact strong {
+        display: inline-block;
+        margin-right: 10px;
+        font-size: 1em;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+      }
+
+      .topline {
+        margin: 20px 0 30px;
+        padding: 16px;
+        background: #f8f9fa;
+        border-left: 3px solid var(--accent);
+        font-size: 16px;
+        line-height: 1.5;
+      }
+
+      .featured-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr);
+        gap: 16px;
+      }
+
+      .featured-card {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        padding: 20px;
+        border: 1px solid var(--border);
+        background: var(--background);
+      }
+
+      .featured-card h3 {
+        margin: 0;
+        font-size: 13px;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+      }
+
+      .helper-text {
+        margin: -4px 0 0;
+        font-size: 13px;
+        color: var(--muted);
+      }
+
+      .featured-body {
+        font-size: 15px;
+      }
+
+      .featured-list {
+        margin: 0;
+        padding-left: 20px;
+      }
+
+      .featured-list li + li {
+        margin-top: 12px;
+      }
+
+      .featured-list a {
+        color: var(--accent2);
+        text-decoration: none;
+        font-weight: 600;
+      }
+
+      .featured-list a:hover {
         text-decoration: underline;
+      }
+
+      .story-why {
+        display: block;
+        margin-top: 4px;
+        color: var(--foreground);
+      }
+
+      .muted {
+        display: block;
+        margin-top: 4px;
+        font-size: 12px;
+        color: var(--muted);
+      }
+
+      .footer-note {
+        margin-top: 40px;
+        font-size: 14px;
+        text-align: right;
+        color: var(--muted);
+      }
+
+      @media (max-width: 600px) {
+        .wrap {
+          padding: 24px 16px 40px;
+        }
+
+        .masthead-top {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        h1 {
+          font-size: 36px;
+        }
+
+        .daily-fact {
+          margin: 22px 0 18px;
+          font-size: 17px;
+        }
       }
     </style>
   </head>
+
   <body>
-    <div class="container">
-      <h1>CivicPulse</h1>
-      <p>Redirecting to <a href="./nyc/">New York</a>...</p>
+    <div class="wrap">
+      <header>
+        <div class="masthead-top">
+          <div>Last Updated <span id="updated">—</span></div>
+          <div class="place-label" id="edition-type">AI Daily</div>
+        </div>
+        <h1>
+          <span class="word-ai">AI</span><span class="word-digest">Digest</span>
+        </h1>
+        <nav class="nav-row" aria-label="Primary">
+          <a href="#brief">Daily Brief</a>
+        </nav>
+      </header>
+
+      <main id="brief">
+        <p class="daily-fact">
+          <strong>Format:</strong>
+          <span id="tagline">Loading…</span>
+        </p>
+
+        <section class="topline" id="lead">Loading today’s brief…</section>
+
+        <section class="featured-grid" aria-label="Featured AI updates">
+          <article class="featured-card">
+            <h3>Worth Opening</h3>
+            <p class="helper-text" id="link-helper">
+              Each link opens the original source in a new tab.
+            </p>
+            <div class="featured-body">
+              <ol class="featured-list" id="featured-list"></ol>
+            </div>
+          </article>
+        </section>
+      </main>
+
+      <footer class="footer-note" id="note">
+        Waiting for the first automated edition.
+      </footer>
     </div>
+
+    <script>
+      "use strict";
+
+      const DIGEST_PATH = "./digest.json";
+
+      const elements = {
+        updated: document.getElementById("updated"),
+        editionType: document.getElementById("edition-type"),
+        tagline: document.getElementById("tagline"),
+        lead: document.getElementById("lead"),
+        featuredList: document.getElementById("featured-list"),
+        linkHelper: document.getElementById("link-helper"),
+        note: document.getElementById("note")
+      };
+
+      function formatGeneratedAt(generatedAt) {
+        if (!generatedAt) {
+          return "—";
+        }
+
+        const generated = new Date(generatedAt);
+        const datePart = generated.toLocaleDateString(undefined, {
+          month: "numeric",
+          day: "numeric"
+        });
+        const timePart = generated.toLocaleTimeString(undefined, {
+          hour: "numeric",
+          minute: "2-digit"
+        });
+
+        return `${datePart} at ${timePart}`;
+      }
+
+      function renderStories(stories) {
+        elements.featuredList.replaceChildren();
+
+        if (!stories.length) {
+          const empty = document.createElement("li");
+          empty.textContent = "The next daily run will drop the top AI links here. Refresh after the next update.";
+          elements.featuredList.append(empty);
+          return;
+        }
+
+        stories.forEach(story => {
+          const item = document.createElement("li");
+
+          const link = document.createElement("a");
+          link.href = story.link;
+          link.target = "_blank";
+          link.rel = "noopener";
+          link.textContent = story.title;
+
+          const why = document.createElement("span");
+          why.className = "story-why";
+          why.textContent = story.why_it_matters;
+
+          const source = document.createElement("span");
+          source.className = "muted";
+          source.textContent = story.source || "Unknown source";
+
+          item.append(link, why, source);
+          elements.featuredList.append(item);
+        });
+      }
+
+      async function loadDigest() {
+        const response = await fetch(DIGEST_PATH, { cache: "no-store" });
+        if (!response.ok) {
+          throw new Error(`Failed to fetch digest: ${response.status}`);
+        }
+
+        return response.json();
+      }
+
+      async function initialisePage() {
+        try {
+          const data = await loadDigest();
+          document.title = data.title || "AI Research Digest";
+          elements.updated.textContent = formatGeneratedAt(data.generated_at_utc);
+          elements.editionType.textContent = data.sample ? "Sample" : "AI Daily";
+          elements.tagline.textContent = data.tagline || "One short AI brief and a few useful links.";
+          elements.lead.textContent = data.lead || "No AI brief is available right now.";
+          elements.note.textContent = data.note || "Generated daily from recent AI coverage.";
+          elements.linkHelper.textContent = "Each link opens the original source in a new tab.";
+          renderStories(Array.isArray(data.items) ? data.items : []);
+        } catch (error) {
+          console.error("Failed to load data:", error);
+          elements.lead.textContent = "Failed to load the digest. Please try again later.";
+          elements.linkHelper.textContent = "Once the next update lands, the original source links will appear here.";
+          elements.note.textContent = "Once the updater runs successfully, the latest AI brief will appear here.";
+          renderStories([]);
+        }
+      }
+
+      initialisePage();
+    </script>
   </body>
 </html>

@@ -1,46 +1,41 @@
-name: Daily CivicPulse Update
+name: Daily AI Digest Update
 
 on:
   schedule:
-    # Run daily at 11 AM UTC (6 am EST)
-    - cron: '0 11 * * *'
-  workflow_dispatch: # Allows manual trigger from GitHub UI
-  push:              # on push to main
-    branches:
-      - main
+    - cron: "0 11 * * *"
+  workflow_dispatch:
 
 permissions:
   contents: write
 
 jobs:
-  update-civicpulse:
+  update-digest:
     runs-on: ubuntu-latest
-    
+
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v4
-      
-    - name: Set up Python
-      uses: actions/setup-python@v4
-      with:
-        python-version: '3.11'
-        
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install feedparser requests pandas openai dotenv
-        
-    - name: Run CivicPulse update
-      env:
-        OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-      run: python update.py
-      
-    - name: Commit and push changes
-      run: |
-        git config user.name "github-actions[bot]"
-        git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-        git add docs/nyc/civicpulse_digest_New_York_NY.json
-        git add local_news_labeled_New_York_NY.csv
-        git add civicpulse_sections_New_York_NY.md
-        git diff --staged --quiet || git commit -m "Daily CivicPulse update - $(date)"
-        git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/stephendongg/civicpulse HEAD:main
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Run digest update
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: python update.py
+
+      - name: Commit and push generated digest
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/digest.json
+          git add ai_digest.md
+          git diff --staged --quiet || git commit -m "Daily AI digest update - $(date -u +%F)"
+          git push

@@ -1,0 +1,13 @@
+{
+  "title": "AI Research Digest",
+  "tagline": "One box, one brief, five links worth your time.",
+  "generated_at_utc": "2026-03-28T00:00:00Z",
+  "lead": "The new layout is ready for a compact daily AI briefing. After the first successful update run, this box will fill with a short synthesis of the most important AI stories of the day.",
+  "items": [],
+  "note": "Waiting for the first automated edition.",
+  "sample": true,
+  "meta": {
+    "story_count_considered": 0,
+    "queries": []
+  }
+}
