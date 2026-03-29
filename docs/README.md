@@ -12,7 +12,7 @@ Pulls recent trust-and-safety relevant posts and papers from labs, evaluators, s
 
 - One lead summary
 - A variable-length set of high-signal trust-and-safety links
-- A single-page GitHub Pages site
+- A single-page GitHub Pages site with a lightweight archive of previous editions
 
 ## Tech
 

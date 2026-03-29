@@ -2,55 +2,62 @@
   "title": "AI Trust & Safety Digest",
   "tagline": "A curated current snapshot of AI trust, safety, and governance, including as many materially important fresh items as the day warrants.",
   "edition_date": "2026-03-29",
-  "generated_at_utc": "2026-03-29T21:27:18Z",
-  "lead": "This cycle’s strongest signal is operationalization: major actors are turning abstract AI safety goals into concrete evaluation, monitoring, assurance, and disclosure mechanisms. The updates span secure evaluation infrastructure, external red teaming of internal controls, public behavior specifications, bug-bounty incentives, and research on manipulation harms—together pointing to a more testable and governable safety stack.",
+  "generated_at_utc": "2026-03-29T04:27:32Z",
+  "lead": "This cycle’s strongest signal is a shift from broad safety principles toward more operational mechanisms: secure evaluation infrastructure, external red teaming of monitoring systems, and bug-bounty style discovery of model failures. Labs and standards actors are also making model behavior and manipulation safeguards more explicit, suggesting continued movement toward auditable, testable safety practices rather than purely aspirational commitments.",
   "items": [
     {
       "title": "CAISI signs CRADA with OpenMined for secure AI evaluations",
       "source": "NIST Artificial Intelligence",
-      "why_it_matters": "Secure computation could let evaluators test sensitive models without exposing weights, data, or dangerous capabilities.",
+      "why_it_matters": "Secure computation could enable more sensitive model evaluations without exposing models, data, or methods.",
       "link": "https://www.nist.gov/news-events/news/2026/03/announcement-caisi-signs-crada-openmined-enable-secure-ai-evaluations",
       "published_iso": "2026-03-27T12:00:00Z"
     },
     {
-      "title": "METR details red teaming of Anthropic’s internal agent monitoring systems",
+      "title": "METR red-teams Anthropic’s internal agent monitoring systems",
       "source": "METR",
-      "why_it_matters": "Independent probing of internal monitoring offers rare evidence about whether agent oversight works in practice.",
+      "why_it_matters": "External testing of monitoring defenses offers concrete evidence about agent oversight and security gaps.",
       "link": "https://metr.org/blog/2026-03-25-red-teaming-anthropic-agent-monitoring/",
       "published_iso": "2026-03-26T07:00:00Z"
     },
     {
       "title": "OpenAI launches Safety Bug Bounty program",
       "source": "OpenAI News",
-      "why_it_matters": "Bug bounties can surface real-world abuse paths, including prompt injection and data exfiltration failures.",
+      "why_it_matters": "Bug-bounty incentives can surface abuse pathways, prompt injection, and exfiltration risks earlier.",
       "link": "https://openai.com/index/safety-bug-bounty",
       "published_iso": "2026-03-25T00:00:00Z"
     },
     {
-      "title": "OpenAI explains its approach to the Model Spec",
-      "source": "OpenAI News",
-      "why_it_matters": "A public behavior spec makes safety tradeoffs and model conduct more legible for auditing and accountability.",
-      "link": "https://openai.com/index/our-approach-to-the-model-spec",
-      "published_iso": "2026-03-25T10:00:00Z"
-    },
-    {
-      "title": "Google DeepMind outlines safeguards against harmful manipulation",
+      "title": "Google DeepMind details work on harmful manipulation safeguards",
       "source": "Google DeepMind News",
-      "why_it_matters": "Manipulation risk research informs safeguards for high-stakes domains where model persuasion could cause harm.",
+      "why_it_matters": "Manipulation research targets subtle model harms that standard toxicity filters may miss.",
       "link": "https://deepmind.google/blog/protecting-people-from-harmful-manipulation/",
       "published_iso": "2026-03-25T16:46:20Z"
     },
     {
+      "title": "OpenAI explains its approach to the Model Spec",
+      "source": "OpenAI News",
+      "why_it_matters": "A public behavior specification makes model conduct more legible for auditing and accountability.",
+      "link": "https://openai.com/index/our-approach-to-the-model-spec",
+      "published_iso": "2026-03-25T10:00:00Z"
+    },
+    {
       "title": "Partnership on AI examines assurance for trustworthy AI systems",
       "source": "Partnership on AI",
-      "why_it_matters": "Assurance frameworks could shape how organizations evidence safety claims to deployers, regulators, and users.",
+      "why_it_matters": "Assurance frameworks could shape how safety claims are evidenced, reviewed, and governed.",
       "link": "https://partnershiponai.org/can-assurance-help-build-ai-systems-that-we-can-trust/",
       "published_iso": "2026-03-26T16:40:08Z"
+    },
+    {
+      "title": "OpenAI releases teen safety policies for developers",
+      "source": "OpenAI News",
+      "why_it_matters": "Age-specific safeguards help developers manage deployment risks for minors more systematically.",
+      "link": "https://openai.com/index/teen-safety-policies-gpt-oss-safeguard",
+      "published_iso": "2026-03-24T11:00:00Z"
     }
   ],
   "note": "Selected from recent trust-and-safety relevant posts and papers by labs, evaluators, standards bodies, policy organizations, and arXiv, then summarized with GPT-5.4. Includes as many materially important fresh items as the day warrants.",
   "meta": {
-    "story_count_considered": 6,
+    "story_count_considered": 7,
     "scope": "trust_and_safety",
     "recency_window_days": 5,
     "curated_item_min": 5,

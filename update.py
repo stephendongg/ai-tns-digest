@@ -29,6 +29,7 @@ load_dotenv()
 
 ROOT = Path(__file__).resolve().parent
 DOCS_DIR = ROOT / "docs"
+ARCHIVE_DIR = DOCS_DIR / "archive"
 
 DIGEST_TITLE = "AI Trust & Safety Digest"
 DIGEST_TAGLINE = "A curated current snapshot of AI trust, safety, and governance, including as many materially important fresh items as the day warrants."
@@ -503,6 +504,7 @@ Rules:
     return {
         "title": DIGEST_TITLE,
         "tagline": DIGEST_TAGLINE,
+        "edition_date": generated_at.strftime("%Y-%m-%d"),
         "generated_at_utc": generated_at.strftime("%Y-%m-%dT%H:%M:%SZ"),
         "lead": collapse_whitespace(payload.get("lead", "")),
         "items": curated_items[:CURATED_ITEM_HARD_MAX],
@@ -551,6 +553,87 @@ def digest_to_markdown(digest: dict[str, Any]) -> str:
     return "\n".join(lines)
 
 
+def build_archive_entry(digest: dict[str, Any]) -> dict[str, Any]:
+    edition_date = collapse_whitespace(digest.get("edition_date", ""))
+    return {
+        "date": edition_date,
+        "generated_at_utc": collapse_whitespace(digest.get("generated_at_utc", "")),
+        "path": f"./archive/{edition_date}.json",
+        "item_count": len(digest.get("items", [])),
+    }
+
+
+def load_archive_index(index_path: Path) -> list[dict[str, Any]]:
+    if not index_path.exists():
+        return []
+
+    try:
+        payload = json.loads(index_path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        return []
+
+    if not isinstance(payload, list):
+        return []
+
+    archive_entries: list[dict[str, Any]] = []
+    for entry in payload:
+        if not isinstance(entry, dict):
+            continue
+
+        date = collapse_whitespace(entry.get("date", ""))
+        path = collapse_whitespace(entry.get("path", ""))
+        generated_at_utc = collapse_whitespace(entry.get("generated_at_utc", ""))
+        item_count = entry.get("item_count", 0)
+
+        if not date or not path:
+            continue
+        if not isinstance(item_count, int) or item_count <= 0:
+            continue
+
+        archive_entries.append(
+            {
+                "date": date,
+                "generated_at_utc": generated_at_utc,
+                "path": path,
+                "item_count": item_count,
+            }
+        )
+
+    return archive_entries
+
+
+def write_archive_outputs(digest: dict[str, Any]) -> None:
+    if digest.get("sample") or not digest.get("items"):
+        return
+
+    ARCHIVE_DIR.mkdir(parents=True, exist_ok=True)
+
+    edition_date = digest["edition_date"]
+    archive_digest_path = ARCHIVE_DIR / f"{edition_date}.json"
+    archive_index_path = ARCHIVE_DIR / "index.json"
+
+    archive_digest_path.write_text(
+        json.dumps(digest, ensure_ascii=False, indent=2) + "\n",
+        encoding="utf-8",
+    )
+
+    next_entry = build_archive_entry(digest)
+    existing_entries = load_archive_index(archive_index_path)
+    filtered_entries = [entry for entry in existing_entries if entry.get("date") != edition_date]
+    archive_entries = sorted(
+        [next_entry, *filtered_entries],
+        key=lambda entry: entry["date"],
+        reverse=True,
+    )
+    archive_index_path.write_text(
+        json.dumps(archive_entries, ensure_ascii=False, indent=2) + "\n",
+        encoding="utf-8",
+    )
+
+    print(f"Saved archive JSON -> {archive_digest_path}")
+    print(f"Saved archive index -> {archive_index_path}")
+
+
 def write_outputs(digest: dict[str, Any]) -> None:
     DOCS_DIR.mkdir(parents=True, exist_ok=True)
 
@@ -562,6 +645,7 @@ def write_outputs(digest: dict[str, Any]) -> None:
         encoding="utf-8",
     )
     digest_md_path.write_text(digest_to_markdown(digest) + "\n", encoding="utf-8")
+    write_archive_outputs(digest)
 
     print(f"Saved JSON -> {digest_json_path}")
     print(f"Saved Markdown -> {digest_md_path}")

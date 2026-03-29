@@ -132,6 +132,55 @@
         color: var(--muted);
       }
 
+      .archive-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px 12px;
+        align-items: center;
+        margin: -4px 0 24px;
+        font-size: 13px;
+        color: var(--muted);
+      }
+
+      .archive-row[hidden] {
+        display: none;
+      }
+
+      .archive-label {
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .archive-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
+      .archive-links a,
+      .archive-links span {
+        display: inline-flex;
+        align-items: center;
+        min-height: 24px;
+        padding: 0 8px;
+        border: 1px solid #d5d7da;
+        border-radius: 999px;
+        text-decoration: none;
+      }
+
+      .archive-links a {
+        color: var(--accent2);
+      }
+
+      .archive-links a:hover {
+        text-decoration: underline;
+      }
+
+      .archive-links span {
+        color: var(--foreground);
+        background: #f8f9fa;
+      }
+
       .topline {
         margin: 20px 0 30px;
         padding: 16px;
@@ -281,6 +330,10 @@
         <p class="scope-note" id="scope-note">
           A broad current snapshot of trust, safety, governance, and evaluation developments, including as many materially important fresh items as the day warrants.
         </p>
+        <section class="archive-row" id="archive-row" aria-label="Other digest editions" hidden>
+          <span class="archive-label">Other dates</span>
+          <div class="archive-links" id="archive-links"></div>
+        </section>
 
         <section class="topline" id="lead">Loading today’s brief…</section>
 
@@ -306,9 +359,11 @@
       "use strict";
 
       const DIGEST_PATH = "./digest.json";
+      const ARCHIVE_INDEX_PATH = "./archive/index.json";
       const PAGE_TITLE = "AI Trust & Safety Digest";
       const DEFAULT_SCOPE_NOTE =
         "A broad current snapshot of trust, safety, governance, and evaluation developments, including as many materially important fresh items as the day warrants.";
+      const ARCHIVE_LINK_LIMIT = 10;
 
       const elements = {
         editionDate: document.getElementById("edition-date"),
@@ -316,6 +371,8 @@
         editionType: document.getElementById("edition-type"),
         tagline: document.getElementById("tagline"),
         scopeNote: document.getElementById("scope-note"),
+        archiveRow: document.getElementById("archive-row"),
+        archiveLinks: document.getElementById("archive-links"),
         lead: document.getElementById("lead"),
         featuredList: document.getElementById("featured-list"),
         linkHelper: document.getElementById("link-helper"),
@@ -331,7 +388,26 @@
         return Number.isNaN(parsed.getTime()) ? null : parsed;
       }
 
-      function formatEditionDate(generatedAt) {
+      function parseEditionDate(editionDate) {
+        if (!editionDate) {
+          return null;
+        }
+
+        const parsed = new Date(`${editionDate}T00:00:00Z`);
+        return Number.isNaN(parsed.getTime()) ? null : parsed;
+      }
+
+      function formatEditionDate(editionDate, generatedAt) {
+        const parsedEditionDate = parseEditionDate(editionDate);
+        if (parsedEditionDate) {
+          return parsedEditionDate.toLocaleDateString(undefined, {
+            timeZone: "UTC",
+            year: "numeric",
+            month: "long",
+            day: "numeric"
+          });
+        }
+
         const generated = parseGeneratedAt(generatedAt);
         if (!generated) {
           return "—";
@@ -356,6 +432,19 @@
         });
       }
 
+      function formatArchiveDate(editionDate) {
+        const parsed = parseEditionDate(editionDate);
+        if (!parsed) {
+          return editionDate || "";
+        }
+
+        return parsed.toLocaleDateString(undefined, {
+          timeZone: "UTC",
+          month: "short",
+          day: "numeric"
+        });
+      }
+
       function formatStoryDate(publishedAt) {
         const published = parseGeneratedAt(publishedAt);
         if (!published) {
@@ -366,6 +455,66 @@
           month: "short",
           day: "numeric"
         });
+      }
+
+      function currentEditionDate(data) {
+        if (data && typeof data.edition_date === "string" && data.edition_date.trim()) {
+          return data.edition_date.trim();
+        }
+
+        const generated = parseGeneratedAt(data && data.generated_at_utc);
+        if (!generated) {
+          return "";
+        }
+
+        return generated.toISOString().slice(0, 10);
+      }
+
+      function requestedEditionDate() {
+        const params = new URLSearchParams(window.location.search);
+        return (params.get("date") || "").trim();
+      }
+
+      function buildEditionHref(date, latestDate) {
+        return date === latestDate ? "./" : `?date=${encodeURIComponent(date)}`;
+      }
+
+      function renderArchiveLinks(archiveEntries, activeDate) {
+        elements.archiveLinks.replaceChildren();
+
+        if (archiveEntries.length < 2) {
+          elements.archiveRow.hidden = true;
+          return;
+        }
+
+        const latestDate = archiveEntries[0].date;
+        archiveEntries.slice(0, ARCHIVE_LINK_LIMIT).forEach(entry => {
+          const label = formatArchiveDate(entry.date);
+
+          if (entry.date === activeDate) {
+            const current = document.createElement("span");
+            current.textContent = label;
+            current.setAttribute("aria-current", "date");
+            elements.archiveLinks.append(current);
+            return;
+          }
+
+          const link = document.createElement("a");
+          link.href = buildEditionHref(entry.date, latestDate);
+          link.textContent = label;
+          elements.archiveLinks.append(link);
+        });
+
+        elements.archiveRow.hidden = false;
+      }
+
+      async function loadJson(path) {
+        const response = await fetch(path, { cache: "no-store" });
+        if (!response.ok) {
+          throw new Error(`Failed to fetch ${path}: ${response.status}`);
+        }
+
+        return response.json();
       }
 
       function renderStories(stories) {
@@ -412,20 +561,47 @@
         });
       }
 
-      async function loadDigest() {
-        const response = await fetch(DIGEST_PATH, { cache: "no-store" });
-        if (!response.ok) {
-          throw new Error(`Failed to fetch digest: ${response.status}`);
-        }
+      async function loadDigest(path) {
+        return loadJson(path);
+      }
 
-        return response.json();
+      async function loadArchiveIndex() {
+        try {
+          const archiveEntries = await loadJson(ARCHIVE_INDEX_PATH);
+          if (!Array.isArray(archiveEntries)) {
+            return [];
+          }
+
+          return archiveEntries.filter(entry => {
+            if (!entry || typeof entry !== "object") {
+              return false;
+            }
+
+            return (
+              typeof entry.date === "string" &&
+              entry.date.trim() &&
+              typeof entry.path === "string" &&
+              entry.path.trim() &&
+              Number.isInteger(entry.item_count) &&
+              entry.item_count > 0
+            );
+          });
+        } catch (error) {
+          console.warn("Failed to load archive index:", error);
+          return [];
+        }
       }
 
       async function initialisePage() {
         try {
-          const data = await loadDigest();
+          const archiveEntries = await loadArchiveIndex();
+          const requestedDate = requestedEditionDate();
+          const selectedEntry = archiveEntries.find(entry => entry.date === requestedDate);
+          const data = await loadDigest(selectedEntry ? selectedEntry.path : DIGEST_PATH);
+          const activeDate = currentEditionDate(data);
+
           document.title = PAGE_TITLE;
-          elements.editionDate.textContent = formatEditionDate(data.generated_at_utc);
+          elements.editionDate.textContent = formatEditionDate(data.edition_date, data.generated_at_utc);
           elements.updated.textContent = formatUpdatedAt(data.generated_at_utc);
           elements.editionType.textContent = data.sample ? "Sample Edition" : "Trust & Safety Daily";
           elements.tagline.textContent =
@@ -435,11 +611,13 @@
           elements.note.textContent =
             data.note || "Selected from trust-and-safety relevant sources.";
           elements.linkHelper.textContent = "Each link opens the original source in a new tab.";
+          renderArchiveLinks(archiveEntries, activeDate);
           renderStories(Array.isArray(data.items) ? data.items : []);
         } catch (error) {
           console.error("Failed to load data:", error);
           elements.lead.textContent = "Failed to load the trust-and-safety digest. Please try again later.";
           elements.scopeNote.textContent = DEFAULT_SCOPE_NOTE;
+          elements.archiveRow.hidden = true;
           elements.linkHelper.textContent = "Once the next update lands, the original source links will appear here.";
           elements.note.textContent = "Once the updater runs successfully, the latest trust-and-safety brief will appear here.";
           renderStories([]);

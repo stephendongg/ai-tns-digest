@@ -36,6 +36,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add docs/digest.json
+          git add docs/archive
           git add ai_digest.md
           git diff --staged --quiet || git commit -m "Daily AI trust and safety digest update - $(date -u +%F)"
           git push
