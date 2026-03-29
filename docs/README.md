@@ -1,6 +1,6 @@
 # AI Trust & Safety Digest
 
-Minimal daily briefing built for one job: help me stay current on AI trust, safety, and governance without scrolling all day.
+Minimal daily briefing built for one job: help me stay current on AI trust, safety, and governance.
 
 [View live ->](https://stephendongg.github.io/ai-research-digest/)
 
