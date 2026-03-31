@@ -32,37 +32,9 @@
       "why_it_matters": "Manipulation-focused safety work targets a core misuse and model-behavior risk in sensitive domains.",
       "link": "https://deepmind.google/blog/protecting-people-from-harmful-manipulation/",
       "published_iso": "2026-03-25T16:46:20Z"
-    },
-    {
-      "title": "ArXiv paper studies performance, energy, and privacy trade-offs for on-device intelligence",
-      "source": "arXiv",
-      "why_it_matters": "It highlights that privacy gains from on-device AI can come with nontrivial performance and energy costs.",
-      "link": "https://arxiv.org/abs/2603.26603v1",
-      "published_iso": "2026-03-30T11:44:36Z"
-    },
-    {
-      "title": "ArXiv paper explores personalized pricing and buyer manipulation from social interaction data",
-      "source": "arXiv",
-      "why_it_matters": "It surfaces how inference from social data can enable manipulative targeting and consumer harm.",
-      "link": "https://arxiv.org/abs/2603.26631v1",
-      "published_iso": "2026-03-30T11:44:36Z"
-    },
-    {
-      "title": "ArXiv paper proposes credibility-aware multimodal fusion under changing context",
-      "source": "arXiv",
-      "why_it_matters": "Context-sensitive reliability modeling could improve robustness when one modality becomes misleading or corrupted.",
-      "link": "https://arxiv.org/abs/2603.26629v1",
-      "published_iso": "2026-03-30T11:44:36Z"
-    },
-    {
-      "title": "ArXiv paper examines transferability limits in machine-learning malware detection",
-      "source": "arXiv",
-      "why_it_matters": "Generalization gaps in malware detectors matter for security claims about AI-based cyber defenses.",
-      "link": "https://arxiv.org/abs/2603.26632v1",
-      "published_iso": "2026-03-30T11:44:36Z"
     }
   ],
-  "note": "Selected from recent trust-and-safety relevant posts and papers by labs, evaluators, standards bodies, policy organizations, and arXiv, then summarized with GPT-5.4. Includes as many materially important fresh items as the day warrants.",
+  "note": "Selected from recent trust-and-safety relevant posts by labs, evaluators, standards bodies, and policy organizations, then summarized with GPT-5.4. Includes as many materially important fresh items as the day warrants.",
   "meta": {
     "story_count_considered": 31,
     "scope": "trust_and_safety",
@@ -78,9 +50,6 @@
       "NIST Artificial Intelligence",
       "Partnership on AI",
       "METR"
-    ],
-    "research_sources": [
-      "arXiv Trust & Safety Search"
     ]
   }
 }

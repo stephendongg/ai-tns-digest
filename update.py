@@ -18,7 +18,7 @@ from datetime import datetime, timedelta, timezone
 from email.utils import parsedate_to_datetime
 from pathlib import Path
 from typing import Any
-from urllib.parse import quote, urlsplit
+from urllib.parse import urlsplit
 
 import feedparser
 import requests
@@ -42,7 +42,6 @@ CURATED_ITEM_MIN = 5
 CURATED_ITEM_HARD_MAX = 24
 PREFERRED_STORIES_PER_SOURCE = 2
 RECENT_WINDOW_DAYS = 5
-ARXIV_MAX_RESULTS = 40
 FEEDS = [
     {"name": "OpenAI News", "url": "https://openai.com/news/rss.xml"},
     {"name": "Google Research Blog", "url": "https://research.google/blog/rss/"},
@@ -51,11 +50,10 @@ FEEDS = [
     {"name": "Partnership on AI", "url": "https://partnershiponai.org/feed/"},
     {"name": "METR", "url": "https://metr.org/feed.xml"},
 ]
-ARXIV_QUERY = (
-    'all:"ai safety" OR all:alignment OR all:interpretability OR '
-    'all:evaluation OR all:"red teaming" OR all:robustness OR '
-    'all:governance OR all:privacy OR all:fairness OR all:jailbreak OR '
-    'all:"system card"'
+DIGEST_NOTE = (
+    "Selected from recent trust-and-safety relevant posts by labs, evaluators, "
+    "standards bodies, and policy organizations, then summarized with GPT-5.4. "
+    "Includes as many materially important fresh items as the day warrants."
 )
 
 LOW_SIGNAL_PATTERNS = [
@@ -113,7 +111,6 @@ TRUST_AND_SAFETY_PATTERNS = [
     r"\bbias\b",
     r"\bmisuse\b",
 ]
-
 
 def collapse_whitespace(value: str) -> str:
     return re.sub(r"\s+", " ", (value or "")).strip()
@@ -231,67 +228,6 @@ def fetch_feed_payload(url: str) -> bytes:
     return result.stdout
 
 
-def build_arxiv_query_url() -> str:
-    query = quote(ARXIV_QUERY)
-    return (
-        "https://export.arxiv.org/api/query"
-        f"?search_query={query}"
-        f"&start=0&max_results={ARXIV_MAX_RESULTS}"
-        "&sortBy=submittedDate&sortOrder=descending"
-    )
-
-
-def fetch_arxiv_candidates(cutoff: datetime) -> list[dict[str, Any]]:
-    stories: list[dict[str, Any]] = []
-
-    try:
-        payload = fetch_feed_payload(build_arxiv_query_url())
-    except RuntimeError as exc:
-        print(f"Skipping arXiv search: {exc}")
-        return stories
-
-    feed = feedparser.parse(payload)
-    added = 0
-
-    for entry in feed.entries:
-        title = clean_title(getattr(entry, "title", ""), "arXiv")
-        link = collapse_whitespace(getattr(entry, "link", ""))
-        summary = collapse_whitespace(
-            getattr(entry, "summary", "") or getattr(entry, "description", "")
-        )[:320]
-        published_raw = (
-            collapse_whitespace(getattr(entry, "published", ""))
-            or collapse_whitespace(getattr(entry, "updated", ""))
-            or collapse_whitespace(getattr(entry, "created", ""))
-        )
-        published_at = parse_published(published_raw)
-
-        if published_at < cutoff:
-            break
-
-        topic_score = story_topic_score(extract_entry_text(entry))
-        if not title or not link or is_low_signal(title) or topic_score <= 0:
-            continue
-
-        stories.append(
-            {
-                "title": title,
-                "source": "arXiv",
-                "link": link,
-                "summary": summary,
-                "published_raw": published_raw or "Unknown time",
-                "published_at": published_at,
-                "published_iso": published_at.strftime("%Y-%m-%dT%H:%M:%SZ"),
-                "feed": "arXiv Trust & Safety Search",
-                "topic_score": topic_score,
-            }
-        )
-        added += 1
-
-    print(f"Fetched {added} candidates from: arXiv Trust & Safety Search")
-    return stories
-
-
 def fetch_candidates() -> list[dict[str, Any]]:
     stories: list[dict[str, Any]] = []
     cutoff = recent_cutoff()
@@ -348,8 +284,6 @@ def fetch_candidates() -> list[dict[str, Any]]:
             added_for_feed += 1
 
         print(f"Fetched {added_for_feed} candidates from: {feed_name}")
-
-    stories.extend(fetch_arxiv_candidates(cutoff))
 
     ranked = sorted(
         stories,
@@ -508,7 +442,7 @@ Rules:
         "generated_at_utc": generated_at.strftime("%Y-%m-%dT%H:%M:%SZ"),
         "lead": collapse_whitespace(payload.get("lead", "")),
         "items": curated_items[:CURATED_ITEM_HARD_MAX],
-        "note": "Selected from recent trust-and-safety relevant posts and papers by labs, evaluators, standards bodies, policy organizations, and arXiv, then summarized with GPT-5.4. Includes as many materially important fresh items as the day warrants.",
+        "note": DIGEST_NOTE,
         "meta": {
             "story_count_considered": len(stories),
             "scope": "trust_and_safety",
@@ -518,7 +452,6 @@ Rules:
             "preferred_stories_per_source": PREFERRED_STORIES_PER_SOURCE,
             "max_candidates": MAX_CANDIDATES,
             "feeds": [feed["name"] for feed in FEEDS],
-            "research_sources": ["arXiv Trust & Safety Search"],
         },
     }
 

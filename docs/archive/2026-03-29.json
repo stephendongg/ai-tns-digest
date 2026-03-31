@@ -55,7 +55,7 @@
       "published_iso": "2026-03-24T11:00:00Z"
     }
   ],
-  "note": "Selected from recent trust-and-safety relevant posts and papers by labs, evaluators, standards bodies, policy organizations, and arXiv, then summarized with GPT-5.4. Includes as many materially important fresh items as the day warrants.",
+  "note": "Selected from recent trust-and-safety relevant posts by labs, evaluators, standards bodies, and policy organizations, then summarized with GPT-5.4. Includes as many materially important fresh items as the day warrants.",
   "meta": {
     "story_count_considered": 7,
     "scope": "trust_and_safety",
@@ -71,9 +71,6 @@
       "NIST Artificial Intelligence",
       "Partnership on AI",
       "METR"
-    ],
-    "research_sources": [
-      "arXiv Trust & Safety Search"
     ]
   }
 }
