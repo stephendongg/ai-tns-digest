@@ -2,18 +2,19 @@
 
 A curated current snapshot of AI trust, safety, and governance, including as many materially important fresh items as the day warrants.
 
-Today’s strongest trust-and-safety signal is a continued shift from abstract AI risk discussion toward operational controls: gated cyber access, model-specific safeguards, and new evaluation ideas for how people actually judge systems. The research mix is thinner on formal standards or policy actions, but it does add useful work on governance opacity, reasoning reliability, misuse-relevant writing patterns, and tokenizer-level robustness.
+Today’s strongest trust-and-safety signal is about evaluation reliability and controlled access to high-capability cyber models. New work questions whether LLM judges can be gamed by contextual framing, while OpenAI is expanding a vetted-access model for cybersecurity use cases with added safeguards, underscoring a broader shift toward tighter evaluation, deployment, and risk-management practices.
 
 ## Worth Opening
 
-- [OpenAI expands trusted cyber access with GPT-5.4-Cyber and tighter vetting](https://openai.com/index/scaling-trusted-access-for-cyber-defense) - It shows frontier cyber capabilities being deployed through controlled access and safeguard-focused governance. Source: OpenAI News. Published: 2026-04-14T00:00:00Z.
-- [OpenAI adds security firms and API grants to cyber defense program](https://openai.com/index/accelerating-cyber-defense-ecosystem) - It operationalizes a monitored pathway for defensive use of advanced cyber models at larger scale. Source: OpenAI News. Published: 2026-04-16T00:00:00Z.
-- [Six dimensions of strain in current AI governance](https://arxiv.org/abs/2604.14070v1) - It argues disclosure-based governance may fail as capability asymmetries and system opacity increase. Source: arXiv. Published: 2026-04-16T11:49:17Z.
-- [Understanding and formalizing how users vibe-test LLMs](https://arxiv.org/abs/2604.14137v1) - It could improve evaluation by translating informal user judgments into more systematic model assessments. Source: arXiv. Published: 2026-04-16T11:49:17Z.
-- [Consensus reasoning knowledge graph for robust chain-of-thought synthesis](https://arxiv.org/abs/2604.14121v1) - It targets hidden reasoning flaws, a core issue for reliability and safety in model outputs. Source: arXiv. Published: 2026-04-16T11:49:17Z.
-- [Interpretable stylistic variation in human and LLM writing](https://arxiv.org/abs/2604.14111v1) - It informs misuse detection by characterizing stylistic signals linked to spam, phishing, and academic abuse. Source: arXiv. Published: 2026-04-16T11:49:17Z.
-- [Regularizing code tokenizers through source attribution](https://arxiv.org/abs/2604.14053v1) - It suggests tokenizer design can affect jailbreak resistance, hallucination risk, and model robustness. Source: arXiv. Published: 2026-04-16T11:49:17Z.
+- [Context framing can distort LLM-as-a-judge evaluations](https://arxiv.org/abs/2604.15224v1) - It highlights a concrete failure mode in automated evaluation pipelines used to assess model quality and safety. Source: arXiv. Published: 2026-04-17T11:40:46Z.
+- [OpenAI expands trusted access program for cyber defense with GPT-5.4-Cyber](https://openai.com/index/scaling-trusted-access-for-cyber-defense) - It shows a governance approach for deploying sensitive capabilities through vetting, access controls, and safeguards. Source: OpenAI News. Published: 2026-04-14T00:00:00Z.
+- [OpenAI says security firms and enterprises join Trusted Access for Cyber](https://openai.com/index/accelerating-cyber-defense-ecosystem) - It indicates the trusted-access model is moving from policy design into operational cyber defense deployment. Source: OpenAI News. Published: 2026-04-16T00:00:00Z.
+- [AD4AD benchmarks visual anomaly detection for safer autonomous driving](https://arxiv.org/abs/2604.15291v1) - It targets out-of-distribution perception failures that can undermine safety in real-world autonomous driving. Source: arXiv. Published: 2026-04-17T11:40:46Z.
+- [RAD-2 scales generator-discriminator reinforcement learning for autonomous driving](https://arxiv.org/abs/2604.15308v1) - It focuses on robustness under uncertainty and closed-loop interaction in a safety-critical deployment setting. Source: arXiv. Published: 2026-04-17T11:40:46Z.
+- [CoopEval benchmarks cooperation-sustaining mechanisms for LLM agents](https://arxiv.org/abs/2604.15267v1) - It addresses whether increasingly capable agents remain cooperative in multi-agent settings with conflicting incentives. Source: arXiv. Published: 2026-04-17T11:40:46Z.
+- [Vision-based human-robot collaboration framework adds uncertainty guarantees](https://arxiv.org/abs/2604.15221v1) - It combines uncertainty estimation and OOD detection to support certifiable safety around humans. Source: arXiv. Published: 2026-04-17T11:40:46Z.
+- [Agentic Microphysics proposes a safety framework for interacting AI agents](https://arxiv.org/abs/2604.15236v1) - It argues safety analysis must extend beyond single models to population-level interaction risks. Source: arXiv. Published: 2026-04-17T11:40:46Z.
 
 Selected from recent trust-and-safety relevant posts and papers by labs, evaluators, standards bodies, policy organizations, and arXiv, then summarized with GPT-5.4. Includes as many materially important fresh items as the day warrants.
 
-Generated at: 2026-04-16T11:49:28Z
+Generated at: 2026-04-17T11:40:57Z
