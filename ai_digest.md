@@ -2,19 +2,20 @@
 
 A curated current snapshot of AI trust, safety, and governance, including as many materially important fresh items as the day warrants.
 
-Today's signal is concentrated in evaluation, auditing, and governance rather than new model capabilities. The strongest updates push toward more verifiable assessments of deletion claims, agent robustness, and content provenance, while standards and policy bodies continue shifting from one-time assurance toward ongoing monitoring and operational accountability.
+Today's signal is concentrated in evaluation, auditing, and governance rather than new model capabilities. The strongest updates push toward more verifiable assessments of agent behavior, stronger privacy and unlearning audits, and clearer standards for monitoring and cyber safety as AI systems move into higher-stakes settings.
 
 ## Worth Opening
 
-- [Google proposes a framework for auditing machine unlearning](https://research.google/blog/new-framework-for-auditing-machine-unlearning/) - Auditable unlearning is central to privacy, compliance, and verifying whether deletion claims actually hold. Source: Google Research Blog. Published: 2026-06-10T17:34:55Z.
-- [OpenAI backs EU work on trustworthy AI and content transparency](https://openai.com/index/supporting-eu-trustworthy-ai-ecosystem) - Provenance and transparency standards affect how AI-generated content is labeled, traced, and governed in Europe. Source: OpenAI News. Published: 2026-06-11T00:00:00Z.
-- [NIST argues AI security should move to continuous monitoring and updates](https://www.nist.gov/news-events/news/2026/06/nist-mathematical-proof-supports-transition-continuous-monitor-and-update) - It reinforces that AI assurance cannot be a one-time certification for evolving systems. Source: NIST Artificial Intelligence. Published: 2026-06-09T12:00:00Z.
-- [AgentBeats proposes an open, standardized harness for agent evaluation](https://arxiv.org/abs/2606.13608v1) - Standardized agent assessment could improve reproducibility and comparability across safety and capability evaluations. Source: arXiv. Published: 2026-06-12T13:56:15Z.
-- [EvoArena benchmarks how agent memory changes in dynamic environments](https://arxiv.org/abs/2606.13681v1) - Dynamic-environment testing targets a real deployment risk: agents drifting as conditions and information change. Source: arXiv. Published: 2026-06-12T13:56:15Z.
-- [One Polluted Page Is Enough examines web-content pollution in generative recommenders](https://arxiv.org/abs/2606.13610v1) - It highlights a concrete integrity risk for retrieval-augmented systems exposed to manipulated web content. Source: arXiv. Published: 2026-06-12T13:56:15Z.
-- [EpiBench introduces verifiable evaluation for AI agents in epigenomics analysis](https://arxiv.org/abs/2606.13602v1) - Verifiable, deterministic grading is useful for trustworthy evaluation in high-stakes scientific agent settings. Source: arXiv. Published: 2026-06-12T13:56:15Z.
-- [Beyond the IT Checklist argues for a cyber safety standard of care](https://arxiv.org/abs/2606.13612v1) - It reframes cyber governance around safety outcomes, not just control documentation and incident reporting. Source: arXiv. Published: 2026-06-12T13:56:15Z.
+- [Google proposes a new framework for auditing machine unlearning](https://research.google/blog/new-framework-for-auditing-machine-unlearning/) - Auditable unlearning is central to privacy, compliance, and verifying deletion claims in deployed models. Source: Google Research Blog. Published: 2026-06-10T17:34:55Z.
+- [OpenAI backs Europe’s AI content transparency and provenance work](https://openai.com/index/supporting-eu-trustworthy-ai-ecosystem) - Content provenance standards affect disclosure, traceability, and enforcement in trustworthy AI deployment. Source: OpenAI News. Published: 2026-06-11T00:00:00Z.
+- [NIST argues AI security should shift to continuous monitoring and updates](https://www.nist.gov/news-events/news/2026/06/nist-mathematical-proof-supports-transition-continuous-monitor-and-update) - It reinforces that static certification is insufficient for managing evolving AI system risks. Source: NIST Artificial Intelligence. Published: 2026-06-09T12:00:00Z.
+- [AgentBeats introduces an open framework for standardized agent assessment](https://arxiv.org/abs/2606.13608v1) - Comparable, reproducible agent evaluations are necessary for credible safety claims across systems. Source: arXiv. Published: 2026-06-13T12:18:49Z.
+- [EvoArena benchmarks how agent memory evolves in dynamic environments](https://arxiv.org/abs/2606.13681v1) - Dynamic-environment testing can reveal drift, stale memory, and brittle behavior missed by static benchmarks. Source: arXiv. Published: 2026-06-13T12:18:49Z.
+- [One Polluted Page Is Enough examines web-content poisoning in generative recommenders](https://arxiv.org/abs/2606.13610v1) - It highlights a concrete attack surface for retrieval-augmented systems that rely on live web inputs. Source: arXiv. Published: 2026-06-13T12:18:49Z.
+- [EpiBench offers verifiable evaluation for AI agents doing epigenomics analysis](https://arxiv.org/abs/2606.13602v1) - Verifiable domain benchmarks improve confidence in agent performance for high-consequence scientific workflows. Source: arXiv. Published: 2026-06-13T12:18:49Z.
+- [Operadic consistency proposes a label-free signal for LLM reasoning failures](https://arxiv.org/abs/2606.13649v1) - Inference-time failure detection could strengthen safeguards when ground truth is unavailable. Source: arXiv. Published: 2026-06-13T12:18:49Z.
+- [Beyond the IT Checklist argues for a cyber safety standard of care](https://arxiv.org/abs/2606.13612v1) - It reframes cyber governance around harm prevention, not just control documentation and compliance. Source: arXiv. Published: 2026-06-13T12:18:49Z.
 
 Selected from recent trust-and-safety relevant posts and papers by labs, evaluators, standards bodies, policy organizations, and arXiv, then summarized with GPT-5.4. Includes as many materially important fresh items as the day warrants.
 
-Generated at: 2026-06-12T13:56:23Z
+Generated at: 2026-06-13T12:18:56Z
