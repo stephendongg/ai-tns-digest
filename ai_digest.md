@@ -2,19 +2,18 @@
 
 A curated current snapshot of AI trust, safety, and governance, including as many materially important fresh items as the day warrants.
 
-Today’s signal is concentrated in evaluation, auditing, and governance rather than new model releases. The strongest updates focus on how to verify deletion claims, standardize agent assessment, measure robustness in dynamic environments, and shape emerging norms for trustworthy AI deployment and content transparency.
+Today’s strongest trust-and-safety signal is practical accountability: new work focuses on auditing whether models truly forget data, adapting governance to AI agents acting in open-source workflows, and benchmarking failure modes in high-stakes multimodal systems. The mix leans toward evaluation and governance mechanisms that could shape how capable models are supervised, audited, and trusted in deployment.
 
 ## Worth Opening
 
-- [Google proposes a framework for auditing machine unlearning](https://research.google/blog/new-framework-for-auditing-machine-unlearning/) - Auditable unlearning is central to privacy, compliance, and verifying deletion claims in deployed models. Source: Google Research Blog. Published: 2026-06-10T17:34:55Z.
-- [OpenAI backs Europe’s AI content transparency and provenance work](https://openai.com/index/supporting-eu-trustworthy-ai-ecosystem) - Support for EU transparency norms could influence provenance standards and disclosure practices across major AI deployments. Source: OpenAI News. Published: 2026-06-11T00:00:00Z.
-- [AgentBeats proposes an open, standardized harness for agent evaluation](https://arxiv.org/abs/2606.13608v1) - Open evaluation infrastructure can improve reproducibility, comparability, and scrutiny of agent safety claims. Source: arXiv. Published: 2026-06-14T12:30:40Z.
-- [EvoArena benchmarks how agent memory changes in dynamic environments](https://arxiv.org/abs/2606.13681v1) - Dynamic-environment testing targets a key deployment risk: agents drifting as conditions and information change. Source: arXiv. Published: 2026-06-14T12:30:40Z.
-- [Study tests whether polluted web pages can sway generative recommenders](https://arxiv.org/abs/2606.13610v1) - It highlights a concrete manipulation pathway for retrieval-augmented systems exposed to adversarial web content. Source: arXiv. Published: 2026-06-14T12:30:40Z.
-- [Paper argues for a reasonable standard of care in cyber safety](https://arxiv.org/abs/2606.13612v1) - It reframes cyber governance around safety outcomes where digital failures can cause physical harm. Source: arXiv. Published: 2026-06-14T12:30:40Z.
-- [EpiBench introduces verifiable evaluation for AI agents in epigenomics analysis](https://arxiv.org/abs/2606.13602v1) - Verifiable domain benchmarks help test agent reliability in high-stakes scientific workflows. Source: arXiv. Published: 2026-06-14T12:30:40Z.
-- [Operadic consistency offers a label-free signal for reasoning failures](https://arxiv.org/abs/2606.13649v1) - Inference-time failure signals could strengthen monitoring when ground truth is unavailable. Source: arXiv. Published: 2026-06-14T12:30:40Z.
+- [New framework for auditing machine unlearning](https://research.google/blog/new-framework-for-auditing-machine-unlearning/) - Auditable unlearning is central to privacy, compliance, and verifying deletion claims in deployed models. Source: Google Research Blog. Published: 2026-06-10T17:34:55Z.
+- [Regulating the Machine Contributor: Governance and Policy Alignment in Open Source](https://arxiv.org/abs/2606.14594v1) - It addresses how open-source governance must adapt when AI agents can autonomously propose and submit code changes. Source: arXiv. Published: 2026-06-15T16:10:52Z.
+- [ClinHallu: A Benchmark for Diagnosing Stage-Wise Hallucinations in Medical MLLM Reasoning](https://arxiv.org/abs/2606.14697v1) - Stage-level hallucination diagnosis could improve evaluation and mitigation for medical multimodal systems. Source: arXiv. Published: 2026-06-15T16:10:52Z.
+- [CORA: Analyzing and bridging thinking-answer gap in Multimodal RLVR via Consistency-Oriented Reasoning Alignment](https://arxiv.org/abs/2606.14691v1) - It targets mismatches between reasoning traces and answers, a key reliability issue in multimodal alignment. Source: arXiv. Published: 2026-06-15T16:10:52Z.
+- [Supporting Europe’s work in ensuring a trustworthy AI ecosystem](https://openai.com/index/supporting-eu-trustworthy-ai-ecosystem) - The update signals engagement with EU transparency and provenance standards for AI-generated content. Source: OpenAI News. Published: 2026-06-11T00:00:00Z.
+- [LoSoNA: A Benchmark for Local Social Norm Adaptation in Group Conversations](https://arxiv.org/abs/2606.14600v1) - Benchmarks for local norm adaptation help evaluate whether agents behave appropriately in multi-user social settings. Source: arXiv. Published: 2026-06-15T16:10:52Z.
+- [From Self-Supervised Speech Models to Mixture-of-Experts for Robust Anti-Spoofing](https://arxiv.org/abs/2606.14639v1) - More robust anti-spoofing improves defenses against synthetic voice misuse and authentication fraud. Source: arXiv. Published: 2026-06-15T16:10:52Z.
 
 Selected from recent trust-and-safety relevant posts and papers by labs, evaluators, standards bodies, policy organizations, and arXiv, then summarized with GPT-5.4. Includes as many materially important fresh items as the day warrants.
 
-Generated at: 2026-06-14T12:30:47Z
+Generated at: 2026-06-15T16:10:59Z
