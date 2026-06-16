@@ -2,18 +2,17 @@
 
 A curated current snapshot of AI trust, safety, and governance, including as many materially important fresh items as the day warrants.
 
-Today’s strongest trust-and-safety signal is practical accountability: new work focuses on auditing whether models truly forget data, adapting governance to AI agents acting in open-source workflows, and benchmarking failure modes in high-stakes multimodal systems. The mix leans toward evaluation and governance mechanisms that could shape how capable models are supervised, audited, and trusted in deployment.
+Today’s strongest trust-and-safety signal comes from evaluation and security work rather than policy or lab disclosures. The fresh papers focus on how to audit public frontier-model benchmarks, detect behavioral signatures in coding agents, and reassess assumptions about privacy-preserving federated learning, with several additional contributions on reliability and alignment measurement.
 
 ## Worth Opening
 
-- [New framework for auditing machine unlearning](https://research.google/blog/new-framework-for-auditing-machine-unlearning/) - Auditable unlearning is central to privacy, compliance, and verifying deletion claims in deployed models. Source: Google Research Blog. Published: 2026-06-10T17:34:55Z.
-- [Regulating the Machine Contributor: Governance and Policy Alignment in Open Source](https://arxiv.org/abs/2606.14594v1) - It addresses how open-source governance must adapt when AI agents can autonomously propose and submit code changes. Source: arXiv. Published: 2026-06-15T16:10:52Z.
-- [ClinHallu: A Benchmark for Diagnosing Stage-Wise Hallucinations in Medical MLLM Reasoning](https://arxiv.org/abs/2606.14697v1) - Stage-level hallucination diagnosis could improve evaluation and mitigation for medical multimodal systems. Source: arXiv. Published: 2026-06-15T16:10:52Z.
-- [CORA: Analyzing and bridging thinking-answer gap in Multimodal RLVR via Consistency-Oriented Reasoning Alignment](https://arxiv.org/abs/2606.14691v1) - It targets mismatches between reasoning traces and answers, a key reliability issue in multimodal alignment. Source: arXiv. Published: 2026-06-15T16:10:52Z.
-- [Supporting Europe’s work in ensuring a trustworthy AI ecosystem](https://openai.com/index/supporting-eu-trustworthy-ai-ecosystem) - The update signals engagement with EU transparency and provenance standards for AI-generated content. Source: OpenAI News. Published: 2026-06-11T00:00:00Z.
-- [LoSoNA: A Benchmark for Local Social Norm Adaptation in Group Conversations](https://arxiv.org/abs/2606.14600v1) - Benchmarks for local norm adaptation help evaluate whether agents behave appropriately in multi-user social settings. Source: arXiv. Published: 2026-06-15T16:10:52Z.
-- [From Self-Supervised Speech Models to Mixture-of-Experts for Robust Anti-Spoofing](https://arxiv.org/abs/2606.14639v1) - More robust anti-spoofing improves defenses against synthetic voice misuse and authentication fraud. Source: arXiv. Published: 2026-06-15T16:10:52Z.
+- [Differential privacy in federated learning may still permit effective backdoor attacks](https://arxiv.org/abs/2606.17035v1) - Challenges a common safety assumption that privacy mechanisms also improve robustness against model poisoning. Source: arXiv. Published: 2026-06-16T15:46:27Z.
+- [Public frontier-model evaluation archives get a Bayesian audit framework](https://arxiv.org/abs/2606.17005v1) - Offers a method to interpret benchmark histories as evidence, not just leaderboards. Source: arXiv. Published: 2026-06-16T15:46:27Z.
+- [Researchers propose fingerprinting coding agents through their action trajectories](https://arxiv.org/abs/2606.16988v1) - Could improve agent oversight by identifying behavioral patterns beyond final benchmark scores. Source: arXiv. Published: 2026-06-16T15:46:27Z.
+- [Post-hoc falsification study examines reliability fixes for frozen small code models](https://arxiv.org/abs/2606.16999v1) - Targets practical error detection and repair for local models used in privacy-constrained settings. Source: arXiv. Published: 2026-06-16T15:46:27Z.
+- [TuneJury introduces an open metric for music-generation preference alignment](https://arxiv.org/abs/2606.17006v1) - Adds open alignment infrastructure for measuring model outputs against human preferences. Source: arXiv. Published: 2026-06-16T15:46:27Z.
+- [Benchmark built to test LLM agents on meta-analysis workflows](https://arxiv.org/abs/2606.17041v1) - Creates a more verifiable evaluation setting for scientific reasoning and evidence synthesis agents. Source: arXiv. Published: 2026-06-16T15:46:27Z.
 
 Selected from recent trust-and-safety relevant posts and papers by labs, evaluators, standards bodies, policy organizations, and arXiv, then summarized with GPT-5.4. Includes as many materially important fresh items as the day warrants.
 
-Generated at: 2026-06-15T16:10:59Z
+Generated at: 2026-06-16T15:46:34Z
