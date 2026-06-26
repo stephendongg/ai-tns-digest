@@ -2,21 +2,18 @@
 
 A curated current snapshot of AI trust, safety, and governance, including as many materially important fresh items as the day warrants.
 
-Today’s signal is concentrated in evaluation reliability, agent control, privacy, and training-time robustness rather than broad policy movement. The strongest fresh items propose new ways to audit multimodal inconsistency, distinguish misalignment from mere failure, harden agents outside their own runtime, and defend models against poisoning and inference-time privacy leakage.
+Today’s signal is less about new frontier-model safeguards than about the surrounding trust-and-safety stack: bias and harm documentation, emerging standards efforts, and fresh research on interpretability, moderation evasion, and reliability. The strongest items either propose mechanisms for evaluating or governing advanced AI, or surface concrete failure modes in deployed systems where safety claims meet real-world use.
 
 ## Worth Opening
 
-- [Auditing order sensitivity in multimodal LLMs](https://arxiv.org/abs/2606.26079v1) - Shows a basic reliability failure mode that emerging evaluation standards increasingly expect developers to measure. Source: arXiv. Published: 2026-06-25T13:08:37Z.
-- [Model Forensics investigates whether concerning behavior actually reflects misalignment](https://arxiv.org/abs/2606.26071v1) - Separating misalignment from confusion could improve incident diagnosis, evaluations, and escalation decisions. Source: arXiv. Published: 2026-06-25T13:08:37Z.
-- [The Unfireable Safety Kernel proposes execution-time alignment outside the agent runtime](https://arxiv.org/abs/2606.26057v1) - Externalizing controls targets a core weakness of in-agent guardrails that prompts or tools may bypass. Source: arXiv. Published: 2026-06-25T13:08:37Z.
-- [Defending text summarization models against data poisoning with detect-unlearn-restore](https://arxiv.org/abs/2606.26036v1) - Addresses a practical training-time attack path for fine-tuned models deployed on small datasets. Source: arXiv. Published: 2026-06-25T13:08:37Z.
-- [Privacy vulnerabilities of attention layers in tabular foundation models](https://arxiv.org/abs/2606.26021v1) - Highlights inference-time leakage risks when sensitive records are supplied as in-context examples. Source: arXiv. Published: 2026-06-25T13:08:37Z.
-- [Why multi-step tool-use reinforcement learning collapses and how supervisory signals fix it](https://arxiv.org/abs/2606.26027v1) - Relevant to safer agent training because unstable RL can degrade behavior in long-horizon tool use. Source: arXiv. Published: 2026-06-25T13:08:37Z.
-- [How robust is OCR reasoning under visual perturbations?](https://arxiv.org/abs/2606.26041v1) - Adds evidence on multimodal robustness where small visual degradations can trigger downstream reasoning errors. Source: arXiv. Published: 2026-06-25T13:08:37Z.
-- [Helping build shared standards for advanced AI](https://openai.com/index/helping-build-shared-standards-for-advanced-ai) - Standards work can shape common expectations for evaluations, safeguards, and cross-border governance. Source: OpenAI News. Published: 2026-06-23T13:00:00Z.
-- [The Tatoxa system for text detoxification in Tatar](https://arxiv.org/abs/2606.26015v1) - Extends harmful-content mitigation research to a low-resource language often missed by safety tooling. Source: arXiv. Published: 2026-06-25T13:08:37Z.
-- [RevengeBench studies reverse engineering of code-space policies from behavior](https://arxiv.org/abs/2606.26094v1) - Could inform audits of whether hidden policies or internal rules can be inferred from observed behavior. Source: arXiv. Published: 2026-06-25T13:08:37Z.
+- [Partnership on AI warns AI bias is putting LGBTQIA+ people at risk](https://partnershiponai.org/ai-bias-is-putting-lgbtqia-people-at-risk/) - Documents concrete equity and harm risks that should shape evaluation, deployment, and governance practices. Source: Partnership on AI. Published: 2026-06-25T15:00:00Z.
+- [OpenAI backs shared standards for advanced AI through Appia Foundation](https://openai.com/index/helping-build-shared-standards-for-advanced-ai) - Standards work can influence how advanced models are evaluated, audited, and governed across organizations. Source: OpenAI News. Published: 2026-06-23T13:00:00Z.
+- [Large-scale study analyzes user-reported breakdowns in AI healthcare chatbots](https://arxiv.org/abs/2606.27302v1) - Real-world failure reports highlight safety, reliability, and user-trust gaps in high-stakes deployments. Source: arXiv. Published: 2026-06-26T13:01:14Z.
+- [Mechanism-oriented taxonomy targets coded language detection for LLM moderation](https://arxiv.org/abs/2606.27314v1) - Improves understanding of how users evade moderation, informing stronger detection and enforcement systems. Source: arXiv. Published: 2026-06-26T13:01:14Z.
+- [Sparse autoencoder regularizers aim to improve interpretability of top-k SAEs](https://arxiv.org/abs/2606.27321v1) - Better interpretability tools can strengthen model auditing and understanding of internal representations. Source: arXiv. Published: 2026-06-26T13:01:14Z.
+- [Study examines when sequence probability tracks correctness in LLMs](https://arxiv.org/abs/2606.27359v1) - Clarifies whether confidence-like signals from models are usable for reliability and safety decisions. Source: arXiv. Published: 2026-06-26T13:01:14Z.
+- [RiVER proposes reinforcement learning for LLMs without ground-truth solutions](https://arxiv.org/abs/2606.27369v1) - Expands post-training methods, raising questions about how to verify gains when rewards are indirect. Source: arXiv. Published: 2026-06-26T13:01:14Z.
 
 Selected from recent trust-and-safety relevant posts and papers by labs, evaluators, standards bodies, policy organizations, and arXiv, then summarized with GPT-5.4. Includes as many materially important fresh items as the day warrants.
 
-Generated at: 2026-06-25T13:09:56Z
+Generated at: 2026-06-26T13:01:21Z
