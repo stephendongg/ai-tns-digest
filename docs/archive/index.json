@@ -1,5 +1,11 @@
 [
   {
+    "date": "2026-07-01",
+    "generated_at_utc": "2026-07-01T13:29:27Z",
+    "path": "./archive/2026-07-01.json",
+    "item_count": 8
+  },
+  {
     "date": "2026-06-30",
     "generated_at_utc": "2026-06-30T13:01:14Z",
     "path": "./archive/2026-06-30.json",
